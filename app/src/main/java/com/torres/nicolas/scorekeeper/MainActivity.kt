@@ -1,14 +1,12 @@
 package com.torres.nicolas.scorekeeper
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
-import android.support.v7.app.AppCompatDelegate
-
-
+import androidx.appcompat.app.AppCompatDelegate
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,8 +20,6 @@ class MainActivity : AppCompatActivity() {
         private const val STATE_SCORE_2 = "STATE_SCORE_2"
     }
 
-
-
     override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
 
         //Save the scores
@@ -33,7 +29,9 @@ class MainActivity : AppCompatActivity() {
             outState.putInt(STATE_SCORE_2, team_2_score)
         }
 
-        super.onSaveInstanceState(outState)
+        if (outState != null) {
+            super.onSaveInstanceState(outState)
+        }
 
 
     }
@@ -76,7 +74,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         //Inflate the menu from XML
         menuInflater.inflate(R.menu.main_menu, menu);
@@ -112,12 +109,6 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-
-
-
-
-
-
     private fun refreshScore(itemID : Int) {
         when(itemID) {
             //Decrement the score of Team 1
@@ -138,6 +129,4 @@ class MainActivity : AppCompatActivity() {
         score_2.text = team_2_score.toString()
 
     }
-
-
 }
